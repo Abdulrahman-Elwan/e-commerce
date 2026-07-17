@@ -17,6 +17,8 @@ export function BtnAddProductToCart({ id }: { id: string }) {
         }
     }
     return (
-        <Button onClick={() => handelAddToCart(id)} className='w-full text-[18px] font-semibold py-5 text-white bg-green-600 cursor-pointer hover:bg-green-800 hover:text-white transition-all duration-500' variant="outline">+ add to cart</Button>
+        <Button onClick={() => handelAddToCart(id)} className='w-full text-[16px] font-normal md:text-[18px] md:font-semibold py-5 text-white bg-green-600 cursor-pointer hover:bg-green-800 hover:text-white transition-all duration-500' variant="outline">
+            + add to cart
+        </Button>
     )
 }

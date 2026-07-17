@@ -70,8 +70,8 @@ export default function NavBar() {
                     <Navbar fluid rounded className="container w-full md:w-[85%] mx-auto">
                         {/* Logo + Links */}
                         <div className="flex items-center gap-10">
-                            <NavbarBrand href="/">
-                                <Image src={logoImage} alt="Main Logo" />
+                            <NavbarBrand>
+                                <Image src={logoImage} width={200} height={200} className='w-[85%] md:w-full' alt="Main Logo" />
                             </NavbarBrand>
 
                             {/* Desktop Links */}
@@ -92,7 +92,7 @@ export default function NavBar() {
                         </div>
 
                         {/* Right Side */}
-                        <div className="flex items-center gap-4 md:order-2">
+                        <div className="flex items-center gap-1 md:gap-4 md:order-2">
                             {!session ? (
                                 <>
                                     <Link href="/login" className="text-[18px] font-semibold hover:text-green-950 cursor-pointer transition-colors duration-500 ease-in-out">
@@ -105,9 +105,9 @@ export default function NavBar() {
                                     </Link>
                                 </>
                             ) : (
-                                <>
+                                <div className="flex items-center gap-4 md:gap-4 md:order-2">
                                     {/* Wishlist */}
-                                    <Link href="/wishlist" className="relative hidden md:block text-2xl hover:text-red-600 transition">
+                                    <Link href="/wishlist" className="relative block text-2xl hover:text-red-600 transition">
                                         <FaHeart className={isCountOfWishlist > 0 ? 'text-red-600' : ''}/>
                                         {isCountOfWishlist > 0 && (
                                             <span className="absolute -top-2 -right-3 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white">
@@ -161,7 +161,7 @@ export default function NavBar() {
                                             Logout
                                         </DropdownItem>
                                     </Dropdown>
-                                </>
+                                </div>
                             )}
 
                             {/* Mobile Toggle */}

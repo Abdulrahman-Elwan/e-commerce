@@ -14,8 +14,8 @@ export default async function ProductsContainer({ queryString, }: { queryString:
     const filteredProducts = search? data.filter((product: ProductType) => product.title.toLowerCase().includes(search)) : data;
 
     return (
-        <div className='container px-3'>
-            <h2 className='text-xl md:text-3xl font-bold mb-2 text-green-900 w-full block'>
+        <div className='container md:px-3'>
+            <h2 className='text-2xl text-center md:text-start  md:text-3xl font-bold mb-2 text-green-900 w-full block'>
                 Recommended for you
             </h2>
             <div className="container flex flex-wrap">

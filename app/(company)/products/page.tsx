@@ -72,7 +72,7 @@ export default async function Products({ searchParams }: { searchParams: Promise
             <div className="filter w-[95%] px-3 md:px-0 md:w-1/4">
                 <Filter />
             </div>
-            <div className="max-w-[95%] md:w-3/4 px-3 md:px-0">
+            <div className="max-w-[95%] md:w-3/4 px-1 md:px-0">
                 <div className="rounded-2xl border border-gray-200 py-5 max-w-full bg-white shadow-xl">
                     <ProductsContainer queryString={queryString} />
                 </div>
