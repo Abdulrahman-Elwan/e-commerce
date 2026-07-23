@@ -17,6 +17,12 @@ export default function Filter() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const [search, setSearch] = useState(searchParams.get("search") ?? "");
+    const [sort, setSort] = useState(searchParams.get("sort") ?? "");
+    const [brand, setBrand] = useState(searchParams.get("brand") ?? "");
+    const [category, setCategory] = useState(searchParams.get("category") ?? "");
+    const [minPrice, setMinPrice] = useState(searchParams.get("price[gte]") ?? "");
+    const [maxPrice, setMaxPrice] = useState(searchParams.get("price[lte]") ?? "");
 
     async function Categories() {
         const res = await getAllCategories();
@@ -38,14 +44,33 @@ export default function Filter() {
         router.push(`${pathname}?${params.toString()}`);
     }
 
+    function resetForm() {
+        setSearch("");
+        setSort("");
+        setBrand("");
+        setCategory("");
+        setMinPrice("");
+        setMaxPrice("");
+    }
+
     function handleReset() {
+        resetForm()
         router.push(pathname);
     }
 
     useEffect(() => {
         Categories();
         Brands();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        setSearch(searchParams.get("search") ?? "");
+        setSort(searchParams.get("sort") ?? "");
+        setBrand(searchParams.get("brand") ?? "");
+        setCategory(searchParams.get("category") ?? "");
+        setMinPrice(searchParams.get("price[gte]") ?? "");
+        setMaxPrice(searchParams.get("price[lte]") ?? "");
+    }, [searchParams]);
 
     return (
         <aside className="sticky rounded-2xl border border-gray-200 bg-white shadow-md p-5 container px-3">
@@ -69,8 +94,11 @@ export default function Filter() {
                 {/* search */}
                 <div className="max-w-md">
                     <TextInput id="search" type="text" rightIcon={FaSearch} placeholder="Search Product"
-                        defaultValue={searchParams.get("search") ?? ""}
-                        onChange={(e) => handleFilter("search", e.target.value)}
+                        value={search}
+                        onChange={(e) => {
+                            setSearch(e.target.value);
+                            handleFilter("search", e.target.value);
+                        }}
                     />
                     <hr className="my-3" />
                 </div>
@@ -81,8 +109,11 @@ export default function Filter() {
                         Sort By
                     </Label>
                     <Select id="sort"
-                        defaultValue={searchParams.get("sort") ?? ""}
-                        onChange={(e) => handleFilter('sort', e.target.value)}
+                        value={sort}
+                        onChange={(e) => {
+                            setSort(e.target.value);
+                            handleFilter('sort', e.target.value);
+                        }}
                     >
                         <option value="">Default</option>
                         <option value="-price">
@@ -108,14 +139,22 @@ export default function Filter() {
                     <div className="flex gap-2">
                         <TextInput
                             type="number"
+                            value={minPrice}
                             placeholder="Min"
-                            onChange={(e) => handleFilter("price[gte]", e.target.value)}
+                            onChange={(e) => {
+                                setMinPrice(e.target.value);
+                                handleFilter("price[gte]", e.target.value);
+                            }}
                         />
 
                         <TextInput
                             type="number"
+                            value={maxPrice}
                             placeholder="Max"
-                            onChange={(e) => handleFilter("price[lte]", e.target.value)}
+                            onChange={(e) => {
+                                setMaxPrice(e.target.value);
+                                handleFilter("price[lte]", e.target.value)
+                            }}
                         />
                     </div>
                 </div>
@@ -126,8 +165,11 @@ export default function Filter() {
                         Brand
                     </Label>
                     <Select id="brand"
-                        defaultValue={searchParams.get('brand') ?? ''}
-                        onChange={(e) => handleFilter('brand', e.target.value)}
+                        value={brand}
+                        onChange={(e) => {
+                            setBrand(e.target.value);
+                            handleFilter('brand', e.target.value)
+                        }}
                     >
                         <option value=''>All Brands</option>
 
@@ -143,8 +185,11 @@ export default function Filter() {
                         Category
                     </Label>
                     <Select id="category"
-                        defaultValue={searchParams.get('category') ?? ''}
-                        onChange={(e) => handleFilter('category', e.target.value)}
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value);
+                            handleFilter('category', e.target.value)
+                        }}
                     >
                         <option>All Categories</option>
                         {categories ? <>

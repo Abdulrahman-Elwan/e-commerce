@@ -98,7 +98,7 @@ export default function LoginPage() {
                 </CardContent>
 
                 <CardFooter className="flex flex-col gap-5 backdrop-blur-xl bg-white/5">
-                    <Button type="submit" form="form-rhf-demo" className="h-12 w-full rounded-xl bg-green-700 text-lg font-semibold transition-all duration-300 hover:scale-[1.02] hover:bg-green-800" >
+                    <Button type="submit" form="form-rhf-demo" className="cursor-pointer h-12 w-full rounded-xl bg-green-700 text-lg font-semibold transition-all duration-300 hover:scale-[1.02] hover:bg-green-800" >
                         Log In
                     </Button>
                     <p className="text-center text-sm text-gray-500">
